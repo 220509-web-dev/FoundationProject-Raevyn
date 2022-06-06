@@ -1,15 +1,65 @@
 package com.revature.foundations.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class AppUser {
 
     private int id;
+
+    @JsonProperty("firstName")
+    private String first;
+    @JsonProperty("lastName")
+    private String last;
+    private String email;
+    private String username;
     private String password;
 
-    public AppUser(String username, String password) {
+
+    public AppUser() {
+        super();
+    }
+
+    public AppUser(int id, String first, String last, String email, String username, String password) {
+        this.id = id;
+        this.first = first;
+        this.last = last;
+        this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public void setFirst(String firstName) {
+        this.first = firstName;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public void setLast(String lastName) {
+        this.last = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
@@ -33,21 +83,24 @@ public class AppUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
+        return id == appUser.id && Objects.equals(first, appUser.first) && Objects.equals(last, appUser.last) && Objects.equals(email, appUser.email) && Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(id, first, last, email, username, password);
     }
 
     @Override
     public String toString() {
         return "AppUser{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", first='" + first + '\'' +
+                ", last='" + last + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
-
 
 }
