@@ -35,7 +35,7 @@ public class ConnectionFactory {
             props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
         } catch (Exception e) {
             System.err.println("Failed to load database credentials from property file.");
-            throw new RuntimeException(e); // fail fast for easier debugging
+            throw new RuntimeException(e);
         }
     }
 
