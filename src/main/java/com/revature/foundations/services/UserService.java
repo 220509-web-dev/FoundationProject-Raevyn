@@ -1,20 +1,19 @@
 package com.revature.foundations.services;
 
-import com.revature.foundations.DAO.UserDaoPostgres;
+import com.revature.foundations.DAO.UserDAO;
 import com.revature.foundations.dto.ResourceCreationResponse;
 import com.revature.foundations.models.AppUser;
-import com.revature.foundations.Util.exceptions.InvalidRequestException;
 
 
 public class UserService {
 
-    private final UserDaoPostgres userDaoPostgres;
+    private final UserDAO userDAO;
 
-    public UserService(UserDaoPostgres userDaoPostgres) {
-        this.userDaoPostgres = userDaoPostgres;
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
-    public ResourceCreationResponse createNewUser(User newUser) {
+    public ResourceCreationResponse createNewUser(AppUser newUser) {
         if (newUser == null ||
         newUser.getUsername() == null || newUser.getUsername().equals("") ||
         newUser.getPassword() == null || newUser.getPassword().equals(""))\
@@ -23,7 +22,7 @@ public class UserService {
             throw InvalidRequestException(msg);
         }
 
-        return new ResourceCreationResponse(userDaoPostgres.save(newUser).getId());
+        return new ResourceCreationResponse(userDAO.save(newUser).getId());
 
     }
 }

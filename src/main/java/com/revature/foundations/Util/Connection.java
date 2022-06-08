@@ -39,7 +39,7 @@ public class ConnectionFactory {
         }
     }
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
 
         Connection conn = DriverManager.getConnection(props.getProperty("db-url"),
                 props.getProperty("db-username"),

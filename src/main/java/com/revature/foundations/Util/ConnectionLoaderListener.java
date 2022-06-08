@@ -1,11 +1,10 @@
 package com.revature.foundations.Util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.foundations.DAO.UserDaoPostgres;
+import com.revature.foundations.DAO.UserDAO;
 import com.revature.foundations.services.UserService;
 import com.revature.foundations.servlets.UserServlet;
 import com.revature.foundations.servlets.AuthServlet;
-import com.revature.foundations.servlets.UserServlet;
 
 import javax.servlet.*;
 import java.time.LocalDateTime;
@@ -19,8 +18,8 @@ public class ConnectionLoaderListener implements ServletContextListener {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        UserDaoPostgres userDaoPostgres = new UserDaoPostgres();
-        UserService userService = new UserService(userDaoPostgres);
+        UserDAO userDAO = new UserDAO();
+        UserService userService = new UserService(userDAO);
         UserServlet userServlet = new UserServlet(mapper, userService);
 
         UserServlet userServlet = new UserServlet(mapper);
