@@ -10,7 +10,7 @@ import javax.servlet.*;
 import java.time.LocalDateTime;
 
 
-public class ConnectionLoaderListener implements ServletContextListener {
+public class ContextLoaderListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -22,14 +22,10 @@ public class ConnectionLoaderListener implements ServletContextListener {
         UserService userService = new UserService(userDAO);
         UserServlet userServlet = new UserServlet(mapper, userService);
 
-        UserServlet userServlet = new UserServlet(mapper);
         AuthServlet authServlet = new AuthServlet(mapper);
 
         ServletContext context = sce.getServletContext();
 
-//        CustomFilter customFilter = new CustomFilter();
-//        context.addFilter("CustomFilter", customFilter)
-//               .addMappingForUrlPatterns(EnumSet.of(DispatcherType.), true, "/*");
 
         context.addServlet("UserServlet", userServlet).addMapping("/users/*");
         context.addServlet("AuthServlet", authServlet).addMapping("/auth");

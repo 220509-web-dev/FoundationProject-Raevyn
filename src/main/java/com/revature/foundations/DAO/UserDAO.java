@@ -43,6 +43,8 @@ public class UserDAO {
             pstmt.setString(1, newUser.getUsername());
             pstmt.setString(2, newUser.getPassword());
 
+            int rowsInserted = pstmt.executeUpdate();
+
             if (rowsInserted != 0) {
                 ResultSet rs = pstmt.getGeneratedKeys();
                 rs.next();

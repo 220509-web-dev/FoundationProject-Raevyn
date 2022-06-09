@@ -2,23 +2,20 @@ package com.revature.foundations.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.foundations.models.AppUser;
+import com.revature.foundations.services.UserService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 
-
-public class UserServlet {
+public class UserServlet extends HttpServlet {
 
     private final ObjectMapper mapper;
 
-    public UserServlet(ObjectMapper mapper) {
+    public UserServlet(ObjectMapper mapper, UserService userService) {
         this.mapper = mapper;
     }
 
@@ -34,22 +31,21 @@ public class UserServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("[LOG] - UserServlet received a GET request at " + LocalDateTime.now());
 
-        // This value would actually come from some data source
-        AppUser someUser = new AppUser(999, "Alice", "Anderson", "aanderson@revature.com", "aanderson83", "password");
+        String potentialId = req.getParameter("id");
+        String potentialUsername = req.getParameter("username");
 
-        // We can also use HashMaps to construct JSON payloads
-//        HashMap<String, Object> someUser = new HashMap<>();
-//        someUser.put("id", 999);
-//        someUser.put("firstName", "Alice");
-//        someUser.put("lastName", "Anderson");
+        if (potentialId != null) {
 
-        System.out.println("[LOG] - Was request filtered? " + req.getAttribute("was-filtered"));
+            return;
+        }
 
-        String respPayload = mapper.writeValueAsString(someUser);
-        resp.setContentType("application/json");
-        resp.getWriter().write(respPayload);
+        if (potentialUsername != null) {
+
+            return;
+        }
+
+
 
     }
 
@@ -77,5 +73,4 @@ public class UserServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doDelete(req, resp);
     }
-
 }

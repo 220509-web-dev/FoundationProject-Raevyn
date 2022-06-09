@@ -24,11 +24,11 @@ public class ConnectionFactory {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
             System.err.println("Failed to load PostgreSQL Driver");
-            throw new RuntimeException(e); // fail fast
+            throw new RuntimeException(e);
         }
     }
 
-    private Properties props = new Properties();
+    private static final Properties props = new Properties();
 
     private ConnectionFactory() {
         try {
