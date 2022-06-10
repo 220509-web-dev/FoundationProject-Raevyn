@@ -17,7 +17,7 @@ public class UserService {
     public ResourceCreationResponse createNewUser(AppUser newUser) {
         if (newUser == null ||
         newUser.getUsername() == null || newUser.getUsername().equals("") ||
-        newUser.getPassword() == null || newUser.getPassword().equals(""))\
+        newUser.getPassword() == null || newUser.getPassword().equals(""))
         {
             String msg = "Provided user data was invalid. Username and Password must not be null.";
             throw new InvalidRequestException(msg);
@@ -25,5 +25,9 @@ public class UserService {
 
         return new ResourceCreationResponse(userDAO.save(newUser).getId());
 
+    }
+
+    public AppUser getUserByUsername(String username) {
+        return null;
     }
 }
