@@ -19,6 +19,8 @@ public class AuthServlet extends HttpServlet {
 
     private final ObjectMapper mapper;
 
+    private final AuthService
+
     public AuthServlet(ObjectMapper mapper) {
         this.mapper = mapper;
     }
