@@ -1,5 +1,6 @@
 com\revature\foundations\Driver.class
 com\revature\foundations\models\Artwork.class
+com\revature\foundations\Util\exceptions\UsernameNotAvailable.class
 com\revature\foundations\models\AppUser.class
 com\revature\foundations\Util\exceptions\InvalidRequestException.class
 com\revature\foundations\services\UserService.class
@@ -11,5 +12,6 @@ com\revature\foundations\DAO\UserDAO.class
 com\revature\foundations\servlets\UserServlet.class
 com\revature\foundations\dto\ResourceCreationResponse.class
 com\revature\foundations\Util\ContextLoaderListener.class
+com\revature\foundations\Util\exceptions\InvalidCredentials.class
 com\revature\foundations\Util\exceptions\DataSourceException.class
 com\revature\foundations\filters\CustomFilter.class

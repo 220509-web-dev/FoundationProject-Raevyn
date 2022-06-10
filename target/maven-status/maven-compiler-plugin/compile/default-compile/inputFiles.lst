@@ -1,6 +1,8 @@
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\servlets\UserServlet.java
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\Util\ContextLoaderListener.java
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\Util\exceptions\DataSourceException.java
+C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\Util\exceptions\UsernameNotAvailable.java
+C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\Util\exceptions\InvalidCredentials.java
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\servlets\TestServlet.java
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\Driver.java
 C:\Programs\Revature\Project1\src\main\java\com\revature\foundations\models\AppUser.java

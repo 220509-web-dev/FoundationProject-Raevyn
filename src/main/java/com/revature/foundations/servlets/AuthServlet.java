@@ -1,18 +1,14 @@
 package com.revature.foundations.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.foundations.Util.exceptions.UsernameNotAvailable;
 import com.revature.foundations.models.AppUser;
-import com.revature.foundations.services.AuthService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +19,9 @@ public class AuthServlet extends HttpServlet {
 
     private final ObjectMapper mapper;
 
-    private final AuthService authService;
 
-    public AuthServlet(AuthService authService, ObjectMapper mapper) {
+    public AuthServlet(ObjectMapper mapper) {
         this.mapper = mapper;
-        this.authService = authService;
     }
 
 
