@@ -1,17 +1,14 @@
 package com.revature.foundations.Util;
 
-import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.*;
 
 public class ConnectionFactory {
 
     private static ConnectionFactory connectionFactory;
 
-    public static ConnectionFactory getInstance() {
+    private ConnectionFactory() { super(); }
 
+    public  static ConnectionFactory getInstance() {
         if (connectionFactory == null) {
             connectionFactory = new ConnectionFactory();
         }
@@ -19,37 +16,19 @@ public class ConnectionFactory {
         return connectionFactory;
     }
 
-    static {
+    public static Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
             System.err.println("Failed to load PostgreSQL Driver");
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static final Properties props = new Properties();
-
-    private ConnectionFactory() {
-        try {
-            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
-        } catch (Exception e) {
-            System.err.println("Failed to load database credentials from property file.");
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static Connection getConnection() throws SQLException {
-
-        Connection conn = DriverManager.getConnection(props.getProperty("db-url"),
-                props.getProperty("db-username"),
-                props.getProperty("db-password"));
-
-        if (conn == null) {
-            throw new RuntimeException("Could not establish a connection to the database");
+            e.printStackTrace();
         }
 
-        return conn;
+    String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=art_app";
+    String username = "postgres";
+    String password = "Revature";
+
+    return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=art_app", "postgres", "revature");
 
     }
 
