@@ -1,20 +1,17 @@
 package com.revature.foundations.servlets;
 
         import com.fasterxml.jackson.databind.ObjectMapper;
-        import com.revature.foundations.models.AppUser;
+        import com.revature.foundations.models.appUser;
         import com.revature.foundations.services.UserService;
 
         import javax.servlet.ServletException;
-        import javax.servlet.annotation.WebInitParam;
-        import javax.servlet.annotation.WebServlet;
         import javax.servlet.http.HttpServlet;
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
         import java.io.IOException;
         import java.time.LocalDateTime;
-        import java.util.HashMap;
 
-        public class UserServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
 
                 private final ObjectMapper mapper;
 
@@ -57,7 +54,7 @@ package com.revature.foundations.servlets;
                         System.out.println("[LOG]-UserServlet received a POST request at " + LocalDateTime.now());
 
                         try {
-                                AppUser newUser = mapper.readValue(req.getInputStream(), AppUser.class);
+                                appUser newUser = mapper.readValue(req.getInputStream(), appUser.class);
                                 System.out.println(newUser);
                         } catch (Exception e) {
                                 e.printStackTrace();

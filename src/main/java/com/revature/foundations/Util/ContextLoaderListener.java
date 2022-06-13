@@ -2,6 +2,7 @@ package com.revature.foundations.Util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.foundations.DAO.UserDAO;
+import com.revature.foundations.services.AuthService;
 import com.revature.foundations.services.UserService;
 import com.revature.foundations.servlets.UserServlet;
 import com.revature.foundations.servlets.AuthServlet;
@@ -19,15 +20,16 @@ public class ContextLoaderListener implements ServletContextListener {
         ObjectMapper mapper = new ObjectMapper();
 
         UserDAO userDAO = new UserDAO();
-        UserService userService = new UserService(userDAO);
+        UserService userService = new UserService();
         UserServlet userServlet = new UserServlet(mapper, userService);
 
+        AuthService authService = new AuthService();
         AuthServlet authServlet = new AuthServlet(mapper);
 
         ServletContext context = sce.getServletContext();
 
 
-        context.addServlet("UserServlet", userServlet).addMapping("/users/*");
+        context.addServlet("UserServlet", userServlet).addMapping("/users");
         context.addServlet("AuthServlet", authServlet).addMapping("/auth");
 
         ServletRegistration.Dynamic registeredServlet = context.addServlet("UserServlet", userServlet);

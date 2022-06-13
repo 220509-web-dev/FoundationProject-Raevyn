@@ -26,7 +26,7 @@ public class ConnectionFactory {
 
     String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=art_app";
     String username = "postgres";
-    String password = "Revature";
+    String password = "revature";
 
     return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=art_app", "postgres", "revature");
 

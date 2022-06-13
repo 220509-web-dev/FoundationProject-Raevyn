@@ -1,6 +1,6 @@
 package com.revature.foundations.DAO;
 
-import com.revature.foundations.models.AppUser;
+import com.revature.foundations.models.appUser;
 import com.revature.foundations.Util.ConnectionFactory;
 import com.revature.foundations.Util.exceptions.DataSourceException;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 public class UserDAO {
 
-    public List<AppUser> getUsers() {
+    public List<appUser> getUsers() {
 
-        List<AppUser> users = new ArrayList<>();
+        List<appUser> users = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
@@ -20,10 +20,14 @@ public class UserDAO {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                AppUser user = new AppUser();
+                appUser user = new appUser();
                 user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setFirst(rs.getString("first_name"));
+                user.setLast(rs.getString("last_name"));
+
                 users.add(user);
             }
 
@@ -35,13 +39,16 @@ public class UserDAO {
 
     }
 
-    public AppUser save(AppUser newUser) {
+    public appUser save(appUser newUser) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
             String sql = "INSERT INTO users VALUES (default, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, newUser.getUsername());
             pstmt.setString(2, newUser.getPassword());
+            pstmt.setString(3, newUser.getEmail());
+            pstmt.setString(4, newUser.getFirst());
+            pstmt.setString(5, newUser.getLast());
 
             int rowsInserted = pstmt.executeUpdate();
 
@@ -58,4 +65,10 @@ public class UserDAO {
         }
     }
 
+    public void persist(appUser newUser) {
+    }
+
+    public List<appUser> getUsersByUsername(String username) {
+        return null;
+    }
 }

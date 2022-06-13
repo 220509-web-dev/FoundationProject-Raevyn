@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class AppUser {
+public class appUser {
 
     private int id;
 
@@ -17,11 +17,11 @@ public class AppUser {
     private String password;
 
 
-    public AppUser() {
+    public appUser() {
         super();
     }
 
-    public AppUser(int id, String first, String last, String email, String username, String password) {
+    public appUser(int id, String first, String last, String email, String username, String password) {
         this.id = id;
         this.first = first;
         this.last = last;
@@ -31,6 +31,7 @@ public class AppUser {
     }
 
     public int getId() {
+
         return id;
     }
 
@@ -82,7 +83,7 @@ public class AppUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AppUser appUser = (AppUser) o;
+        appUser appUser = (com.revature.foundations.models.appUser) o;
         return id == appUser.id && Objects.equals(first, appUser.first) && Objects.equals(last, appUser.last) && Objects.equals(email, appUser.email) && Objects.equals(username, appUser.username) && Objects.equals(password, appUser.password);
     }
 
@@ -93,7 +94,7 @@ public class AppUser {
 
     @Override
     public String toString() {
-        return "AppUser{" +
+        return "appUser{" +
                 "id=" + id +
                 ", first='" + first + '\'' +
                 ", last='" + last + '\'' +

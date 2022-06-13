@@ -1,7 +1,8 @@
 package com.revature.foundations.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.foundations.models.AppUser;
+import com.revature.foundations.models.appUser;
+import com.revature.foundations.services.AuthService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,13 @@ import java.util.List;
 public class AuthServlet extends HttpServlet {
 
     private final ObjectMapper mapper;
+    private AuthService authService = new AuthService();
 
 
     public AuthServlet(ObjectMapper mapper) {
+
         this.mapper = mapper;
+        this.authService = authService;
     }
 
 
@@ -40,18 +44,18 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<AppUser> users = new ArrayList<>();
+        List<appUser> users = new ArrayList<>();
         users.addAll(Arrays.asList(
-                new AppUser(1, "Tester", "McTesterson", "tester2@revature.com", "tester99", "p4$$W0RD"),
-                new AppUser(2, "T", "TEST", "test@test.com", "tester5", "password"),
-                new AppUser(7, "Ana", "Testo", "tests@testing.com", "tester7", "p@sswOrd")
+                new appUser(1, "Tester", "McTesterson", "tester2@revature.com", "tester99", "p4$$W0RD"),
+                new appUser(2, "T", "TEST", "test@test.com", "tester5", "password"),
+                new appUser(7, "Ana", "Testo", "tests@testing.com", "tester7", "p@sswOrd")
         ));
 
         HashMap<String, Object> credentials = mapper.readValue(req.getInputStream(), HashMap.class);
         String providedUsername = (String) credentials.get("username");
         String providedPassword = (String) credentials.get("password");
 
-        for (AppUser user : users) {
+        for (appUser user : users) {
             if (providedUsername.equals(user.getUsername()) && providedPassword.equals(user.getPassword())) {
                 System.out.println("[LOG] - found user!");
 
