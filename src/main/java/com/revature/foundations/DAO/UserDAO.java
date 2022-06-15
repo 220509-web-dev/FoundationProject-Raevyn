@@ -15,7 +15,7 @@ public class UserDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "SELECT * FROM users";
+            String sql = "SELECT * FROM app_users";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             ResultSet rs = pstmt.executeQuery();
@@ -32,6 +32,7 @@ public class UserDAO {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.err.println( "An error occurred within UserDAO#getUsers");
         }
 
